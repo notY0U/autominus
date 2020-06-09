@@ -25,7 +25,7 @@
                 <a href="{{route('vehicle.index', ['order' => 'asc', 'by' => 'year'])}}" style="text-decoration:none; color:black">0-9</a> |
                 <a href="{{route('vehicle.index', ['order' => 'desc', 'by' => 'year'])}}" style="text-decoration:none; color:black">9-0</a>
                 <br>Filtruoti pagal:
-                <form action="{{route('vehicle.index')}}" method="get">
+                <form action="{{route('vehicle.index')}}" method="get" >
                     <select name="show_make_id">
                       <option value="0">Pasirinkite markę</option>
                       @foreach ($makes as $make)
@@ -40,22 +40,21 @@
                 </select>
 
                 <select name="show_year">
-                  <option value="0">Pasirinkite metus</option>
+                  <option value="0" >Pasirinkite metus</option>
                   @foreach ($vehicles_year as $vehicle)
                       <option value="{{$vehicle->year}}" @if($vehicle->year == $active) selected @endif>{{$vehicle->year}}</option>
                   @endforeach
                 </select><br>
-                Savininkų skaičius
-                <input type="number" name="show_prevOwners" placeholder="įveskite skaičių iki 20">
-
-                <button type="submit">Filtruoti</button>
-                <a href="{{route('vehicle.index')}}">išvalyti</a>
+                    <div style="margin:3px">
+                    Savininkų skaičių
+                        <input type="number" name="show_prevOwners" placeholder="įveskite skaičių iki 20" >
+                        <button type="submit">Filtruoti</button>
+                        <a href="{{route('vehicle.index')}}">išvalyti</a>
+                    </div>
                 </form>
-
                </div>
-
                 <div class="card-body">
-                    @foreach($vehicles as $key => $vehicle)
+                    @foreach($vehicles as  $vehicle)
                      Markė: {{$vehicle->vehicleMake->make}} Pagaminta: {{$vehicle->year}} Savininkas: {{$vehicle->owner}} Viso savininkų: {{$vehicle->prevOwners}}
                          <br>
                          Komentarai: <br>
